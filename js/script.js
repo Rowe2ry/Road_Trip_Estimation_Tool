@@ -19,23 +19,31 @@ var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
  * FUNCTION DEFINITIONS
  * ========================================================================= */
 
-function fetchingUserLocation () {
+// function to grab lat & long coordinates from user's current location
+function fetchingUserLocation (str) {
 
-    fetch("https://ipinfo.io/json?token=fc2c5059a0b866")
+    // var userInputDestination = str;
+    console.log(str) 
+
+    // grabs the raw data we need from API
+    fetch(ipAddressURL)
         .then(function (response) {
             console.log(response)
             return response.json ();
         })
+        // formats data to be used
         .then(function (data) {
             console.log(data)
 
-            var userCity = data.city;
-            var userPostal = data.postal;
-            var userLocation = data.loc.split(',');
-            var userLat = userLocation[0];
-            var userLon = userLocation[1];
+            var userStartingLoc = data.loc.split(','); // grabs the lat & lon of user - spliting to use seperately
+            var startLat = userStartingLoc[0]; // grabs the lat of user
+            var startLon = userStartingLoc[1]; // grabs the lon of user 
+            console.log(userStartingLoc, startLat, startLon);
 
-            console.log(userCity, userPostal, userLocation, userLat, userLon);
+             // putting all into an array to pass to next function
+            var userLocationData = [str, startLat, startLon]
+            console.log(userLocationData);
+
         })
 };
 
