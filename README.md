@@ -1,7 +1,8 @@
-
-# 1stProjectJS
+# Road Trip App
 
 We have the best group.  Our project is going to be amazing. 
-=======
-# hi, this is lina 
 
+
+I really like for loops. They are super duper cool
+
+# hi, this is lina 
