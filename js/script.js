@@ -18,6 +18,7 @@ var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
  * FUNCTION DEFINITIONS
  * ========================================================================= */
 
+// TESTING! :) 
 function enCity () {
     var endingLocation = window.prompt('Please Enter the city you want to travel to');
     fetchingUserLocation (endingLocation);
@@ -25,8 +26,6 @@ function enCity () {
 
 // function to grab lat & long coordinates from user's current location
 function fetchingUserLocation (str) {
-
-    console.log(str) 
 
     // grabs the raw data we need from API
     fetch(ipAddressURL)
