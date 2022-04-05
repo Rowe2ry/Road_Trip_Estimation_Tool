@@ -13,7 +13,7 @@ var pipeInsertion = '%7C';
 var ipAddressURL ='https://ipinfo.io/json?token=fc2c5059a0b866';
 var travelType ='drive';
 var startingLatLon = [33.87820,-84.23729]; // plug in from user's IP address fetch
-var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather PI search
+var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
 
 /* ==========================================================================
  * FUNCTION DEFINITIONS
