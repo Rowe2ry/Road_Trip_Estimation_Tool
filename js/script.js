@@ -113,9 +113,43 @@ function grabRoute(startLat, startLon, endLat, endLon) {
  * ACTIVE EVENT LISTENERS
  * ========================================================================= */
 // event listener for when user clicks button to save the lists 
-var packingButton = $('.packing-button');
+var packingButton = document.querySelector('.packing-button');
 var buyingButton = document.querySelector('.buying-button');
 var todoButton = document.querySelector('.todo-button');
+var packingInput = document.querySelector('.packing-input');
+var buyingInput = document.querySelector('.buying-input');
+var todoInput = document.querySelector('.todo-input');
+var newList = document.createElement('li')
+
+
+packingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    newList.textContent = packingInput.value;
+
+    document.getElementById('packing-list').append(newList);
+
+    localStorage.setItem("list", packingInput);
+
+})
+
+buyingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    newList.textContent = buyingInput.value;
+
+    document.getElementById('buying-list').append(newList);
+
+})
+
+todoButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    newList.textContent = todoInput.value;
+
+    document.getElementById('todo-list').append(newList);
+
+})
 
 
 
@@ -125,4 +159,4 @@ var todoButton = document.querySelector('.todo-button');
  * ========================================================================= */
 
 // fetchingUserLocation ();
-enCity ();
+// enCity ();
