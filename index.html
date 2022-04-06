@@ -11,23 +11,60 @@
 </head>
 <body>
     
-<nav>    
-    <header>
+  <div class="headerStyle">
+    <div class="container">
+      <header class="row">
         <h1>Trip Planner</h1>
-    
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">LET'S GO!</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#Starting Point">Starting Point</a>
-        <a href="Destination">Destination</a>
-        <a href="#FAQ">FAQ</a>
+        <nav>
+          <div class="dropdown">
+            <button class="dropbtn">LET'S GO!</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#Starting Point">Starting Point</a>
+              <a href="Destination">Destination</a>
+              <a href="#FAQ">FAQ</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+  </div>
+  
+  
+
+  <main class="container">
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="row">
+            <div class="twelve columns">
+              <label for="exampleEmailInput">Where are you going?</label>
+              <input class="u-full-width" type="text" placeholder="i.e. Denver" id="cityName">
+            </div>
+          </div>
+          <input class="button-primary" type="submit" value="Plan trip">
+        </form>
       </div>
     </div>
-    </header>
-    </nav>    
+    <div class="row">
+      <div class="col u-full-width" id="outputArea">
+        
+      </div>
+    </div>
+  </main>
 
-    <input class="input"> 
-    <button class="button"></button>
-    <script src="./js/script.js"></script>
+  <div class="footerStyle">
+    <footer class="container">
+      <div class="row">
+        <div class="ten columns">
+          <p class="white-text">Created with ❤️ by Candice Bailey, Lina Choi, Chris Rowe, and Seamona Stewart</p>
+        </div>
+        <div class="two columns">
+          <p>2022©</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./js/script.js"></script>
 </body>
 </html>

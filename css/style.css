@@ -1,7 +1,14 @@
+.headerStyle,
+.footerStyle {
+  width: 100%;
+  margin: 0;
+  background-color: teal;
+}
+
 h1 {
     text-align: center;
-    background-color: teal;
     padding: 20pt;
+    color: #fff;
   }
 
   /* Dropdown Button */
@@ -15,9 +22,9 @@ h1 {
   }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dro  pbtn:focus {
-    background-color: #2980B9;
-  }
+.dropbtn:hover, .dropbtn:focus-visible {
+  background-color: #2980B9;
+}
   
  /* The container <div> - needed to position the dropdown content */
   .dropdown {
@@ -47,3 +54,6 @@ h1 {
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #ddd}
   
+  .white-text {
+    color: #fff;
+  }

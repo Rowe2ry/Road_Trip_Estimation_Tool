@@ -2,6 +2,8 @@
  * DOM TARGETTING
  * ========================================================================= */
 
+var outPutArea = document.getElementById('outputArea');
+
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
  * ========================================================================= */
@@ -194,11 +196,31 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
             var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
             console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
-            return data[0];
+            var formattedData = convertToHourMin(data);
+            populatePage(formattedData);
         };
     };
 };
     
+function convertToHour(arr) {
+        var totalMins = arr[0];
+        var hours = Math.floor(totalMins/60);
+        var mins = totalMins - (hours * 60);
+        var totalTime = hour + ' hours and ' + mins;
+        arr[0] = totalTime;
+        return arr;
+}
+
+function populatePage( arr) {
+    var totalTravelTime = arr[0];
+    var numRefuel = arr[1];
+    var numBathroom = arr[2];
+    var hotelStays = arr[3];
+
+
+    var outPutData = document.createElement('p');
+
+}
 
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
@@ -209,4 +231,4 @@ function grabRoute(startLat, startLon, endLat, endLon) {
  * ========================================================================= */
 
 // fetchingUserLocation ();
-enCity ();
+// enCity ();
