@@ -138,3 +138,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 
 // fetchingUserLocation ();
 enCity ();
+
+element.addEventListener("click", function() {
+    document.getElementById("demo").innerHTML = "Hello World";
+  });
