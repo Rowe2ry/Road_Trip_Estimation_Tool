@@ -7,8 +7,9 @@
 
 h1 {
     text-align: center;
+    background-color: teal;
     padding: 20pt;
-    color: #fff;
+
   }
 
   /* Dropdown Button */
@@ -23,6 +24,7 @@ h1 {
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus-visible {
+
     background-color: #2980B9;
   }
   
@@ -53,6 +55,24 @@ h1 {
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #ddd}
   
+
+ button { 
+   color: rgb(249, 252, 252);
+   background-color: teal;
+   box-shadow: #8d9ca6;
+  }
+
+
+input label button { 
+  display: inline-block;
+  width: 20%;
+  font-size: 15px;
+  margin-left: 1000px;
+  margin: .5rem;
+  padding: 0.5rem;
+}
+
   .white-text {
     color: #fff;
   }
+

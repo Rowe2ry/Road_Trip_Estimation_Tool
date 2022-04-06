@@ -257,4 +257,11 @@ todoButton.addEventListener('click', function(event) {
  * ========================================================================= */
 
 // fetchingUserLocation ();
+
+
+element.addEventListener("click", function() {
+    document.getElementById("demo").innerHTML = "Hello World";
+  });
+
 // enCity ();
+
