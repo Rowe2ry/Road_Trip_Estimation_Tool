@@ -121,7 +121,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
                   console.log(data); // in this case just log to console
                   driveDistance = data.features[0].properties.distance;
                   console.log(driveDistance);
-                  console.log('total drive time in minutes =' + travelTimeCalculation (driveDistance))
+                  console.log('total drive time in minutes =' + travelTimeCalculation (driveDistance));
               });
           } else {
               console.log('error with current fetch'); // just some feedback if the API doesn't recognize the city name
@@ -147,6 +147,10 @@ function grabRoute(startLat, startLon, endLat, endLon) {
     var breakfastToLunch = 240; // time between breakfast and lunch
     var lunch = 30; // time for a quick lunch on road trip
     var lunchToDinner = 390; // mins between lunch and dinner
+    var dinner = 60;
+    var refuelCount = 0;
+    var hotelStays = 0;
+    var hotelTime = 0;
 
 // user will supply this value, we will cap it later
     var maxOneDayDrive = 600; // 10 hours of driving per day in this case
@@ -156,8 +160,9 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 
 // user will supply this value
     var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
+    var bathBreakCount = (Math.floor((759 / bathroomEvery)));
 
-    var maxTimeDrivingAfterBathroom = 759 - (Math.floor((759 / bathroomEvery)) * bathroomBreak); // take the bathroom breaks out of the day's productivity
+    var maxTimeDrivingAfterBathroom = 759 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
 
     // maxTimeDrivingAfterBathroom = 669
 
@@ -170,16 +175,26 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             totalTravelTime += 1440 // then just add 24 hours to the estimate and... 
             distanceTraveled = Math.min(maxTimeDrivingAfterBathroom, maxOneDayDrive); // assume the user went as far as they could go
             distanceToGo -= distanceTraveled; // reduce the remaining trip distance
+            refuelCount += 3; // 3 tanks of gas needed for one day of driving
+            bathBreakCount = bathBreakCount * 2 ; // not idea but assumes 
+            hotelStays++; // add a hotel stay
+            hotelTime+= 480; // add 8 hours in the hotel
         } else if (distanceToGo < maxOneDayDrive) { // if they can go as far as they need to in their time allowance
             var bathroomTime = (distanceToGo / bathroomEvery) * bathroomBreak; // add their bathroom breaks
-            var refuelTime = (distanceToGo / 300) * 7; // 7 mins refueling every 300 miles
-            if (distanceToGo > breakfastToLunch) {
-                totalTravelTime +=lunch;
-            } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) {
-                totalTravelTime += lunch + lunchToDinner;
-            }
+            var refuelCountToday = Math.ceil((distanceToGo/300));
+            var refuelTime = refuelCountToday * 7; // 7 mins refueling every 300 miles
+            if (distanceToGo > breakfastToLunch) { // if thy have to drive thru lunch
+                totalTravelTime +=lunch; // add the lunch stop to total time
+            } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) { // if they are driving thru dinner time
+                totalTravelTime += lunch + dinner; // add the dinner stop to the time
+            };
+            totalTravelTime += distanceToGo; // take the distaqnce form today and add to the total
+            distanceToGo = 0; // reduce the distance down
+            refuelCount += refuelCountToday; // add the fuel stops for today
             totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
-            return totalTravelTime;
+            var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
+            console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
+            return data[0];
         };
     };
 };
