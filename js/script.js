@@ -2,6 +2,8 @@
  * DOM TARGETTING
  * ========================================================================= */
 
+var outPutArea = document.getElementById('outputArea');
+
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
 
@@ -196,11 +198,51 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
             var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
             console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
-            return data[0];
+            var formattedData = convertToHour(data);
+            populatePage(formattedData);
         };
     };
 };
     
+function convertToHour(arr) {
+        var totalMins = arr[0];
+        var hours = Math.floor(totalMins/60);
+        var mins = totalMins - (hours * 60);
+        var totalTime = hours + ' hours and ' + mins + " minutes.";
+        arr[0] = totalTime;
+        return arr;
+}
+
+function populatePage( arr) {
+    var totalTravelTime = arr[0];
+    var numRefuel = arr[1];
+    var numBathroom = arr[2];
+    var hotelStays = arr[3];
+
+    var outStringSect1 = "Your road trip will total: " + totalTravelTime;
+    var outStringSect2 = "This includes: "
+
+    var outPutData1 = document.createElement('p');
+    outPutData1.textContent = outStringSect1;
+    outPutArea.append(outPutData1);
+    var outPutData2 = document.createElement('p');
+    outPutData2.textContent = outStringSect2;
+    outPutArea.append(outPutData2);
+    var driveDataList = document.createElement('ul');
+    outPutArea.append(driveDataList);
+    var fuelLiEl = document.createElement('li'); 
+    fuelLiEl.textContent = 'the ' + numRefuel + ' times you will have to refuel';
+    var bathLiEl = document.createElement('li'); 
+    bathLiEl.textContent = 'the ' + numBathroom + ' times you will stop to use the bathroom';
+    var hotelLiEl = document.createElement('li'); 
+    hotelLiEl.textContent = 'and the ' + hotelStays + ' times you will sleep in a hotel';
+    var asWell = document.createElement('li'); 
+    asWell.textContent = 'as well as a 30 minute lunch and 1 hour dinner every day';
+    driveDataList.append(fuelLiEl);
+    driveDataList.append(bathLiEl);
+    driveDataList.append(hotelLiEl);
+    driveDataList.append(asWell);
+}
 
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
