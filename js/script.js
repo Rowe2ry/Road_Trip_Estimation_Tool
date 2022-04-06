@@ -6,6 +6,8 @@ var outPutArea = document.getElementById('outputArea');
 
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
+
+
  * ========================================================================= */
 
 var APIkeyCurrent = '00d31542c0f530cb4f115dab6831ce15'; // to call the current Weather API from Open Weather
@@ -42,10 +44,10 @@ function myFunction() {
 
 
 // TESTING! :) 
-function enCity () {
-    var endingLocation = window.prompt('Please Enter the city you want to travel to');
-    fetchingUserLocation (endingLocation);
-}
+// function enCity () {
+//     var endingLocation = window.prompt('Please Enter the city you want to travel to');
+//     fetchingUserLocation (endingLocation);
+// }
 
 // function to grab lat & long coordinates from user's current location
 function fetchingUserLocation (str) {
@@ -245,6 +247,52 @@ function populatePage( arr) {
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
  * ========================================================================= */
+// event listener for when user clicks button to save the lists 
+var packingButton = document.querySelector('.packing-button');
+var buyingButton = document.querySelector('.buying-button');
+var todoButton = document.querySelector('.todo-button');
+var packingInput = document.querySelector('.packing-input');
+var buyingInput = document.querySelector('.buying-input');
+var todoInput = document.querySelector('.todo-input');
+
+
+packingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    var packingInputValue = document.getElementById('packing').value;
+    console.log(packingInputValue)
+
+    var newList = document.createElement('li')
+
+    newList.textContent = packingInputValue;
+
+    document.getElementById('packing-list').append(newList);
+})
+
+buyingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var newList = document.createElement('li')
+
+    newList.textContent = buyingInput.value;
+
+    document.getElementById('buying-list').append(newList);
+
+})
+
+todoButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var newList = document.createElement('li')
+
+    newList.textContent = todoInput.value;
+
+    document.getElementById('todo-list').append(newList);
+
+})
+
+
+
 
 /* ==========================================================================
  * LOGIC EXECUTION ON PAGE LOAD

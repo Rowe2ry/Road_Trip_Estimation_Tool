@@ -45,11 +45,53 @@
         </form>
       </div>
     </div>
+
     <div class="row">
       <div class="col u-full-width" id="outputArea">
         
       </div>
     </div>
+
+        <!-- adding container to hold all the planning lists for user -->
+        <div class="planning-list">
+        
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Packing List</p>
+                <form>
+                    <input class="packing-input" id="packing" placeholder="What to pack..." type="text">
+                    <input class="packing-button" type="submit" value="Save"></input>
+                    <ul id="packing-list">
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Buying List</p>
+                <form>
+                    <input class="buying-input" placeholder="What to buy..." type="text">
+                    <input class="buying-button" type="submit" value="Save"></input>
+                    <ul id="buying-list">
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>To Do List</p>
+                <form>
+                    <input class="todo-input" placeholder="What to do..." type="text">
+                    <input class="todo-button" type="submit" value="Save"></input>
+                    <ul id="todo-list">
+                    </ul>
+                </form>
+            </div>  
+        </div>
+
+    </div>    
   </main>
 
   <div class="footerStyle">
