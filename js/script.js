@@ -4,6 +4,8 @@
 
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
+
+
  * ========================================================================= */
 
 var APIkeyCurrent = '00d31542c0f530cb4f115dab6831ce15'; // to call the current Weather API from Open Weather
@@ -40,10 +42,10 @@ function myFunction() {
 
 
 // TESTING! :) 
-function enCity () {
-    var endingLocation = window.prompt('Please Enter the city you want to travel to');
-    fetchingUserLocation (endingLocation);
-}
+// function enCity () {
+//     var endingLocation = window.prompt('Please Enter the city you want to travel to');
+//     fetchingUserLocation (endingLocation);
+// }
 
 // function to grab lat & long coordinates from user's current location
 function fetchingUserLocation (str) {
@@ -121,6 +123,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
                   console.log(data); // in this case just log to console
                   driveDistance = data.features[0].properties.distance;
                   console.log(driveDistance);
+                  console.log('total drive time in minutes =' + travelTimeCalculation (driveDistance));
               });
           } else {
               console.log('error with current fetch'); // just some feedback if the API doesn't recognize the city name
@@ -128,17 +131,137 @@ function grabRoute(startLat, startLon, endLat, endLon) {
       });
   };
 
+ function travelTimeCalculation (totalDistance) {
+
+    // calculation assumes 60mph to make each mile a minute of time and its a reasonable road trip speed
+    // calculation assumes the user has breakfast at 7:00am and begins their road trip at 8:00am with a full tank of gas
+    // calculation assumes the user will take 30 min lunch at noon
+    // calculation assumes the user will take a 1 hour dinner at 7pm
+    // calculation assumes this day schedule is repeated every day
+    // calculation assumes user has a range limit of 300 miles due to fuel consumption
+    // calculation assumes if the user hits their mad time of driving per day, they will find
+    //                      a hotel, sleep, and start the next day on the usual schedule
+
+    var distanceToGo = Math.ceil(totalDistance); // baseline it takes as many miles as it does minutes round up to nearest min
+    var totalTravelTime = 0;
+    var distanceTraveled = 0;
+    var timeForDriving = 759; // number of minutes someone has to drive after sleeping eating and refueling
+    var breakfastToLunch = 240; // time between breakfast and lunch
+    var lunch = 30; // time for a quick lunch on road trip
+    var lunchToDinner = 390; // mins between lunch and dinner
+    var dinner = 60;
+    var refuelCount = 0;
+    var hotelStays = 0;
+    var hotelTime = 0;
+
+// user will supply this value, we will cap it later
+    var maxOneDayDrive = 600; // 10 hours of driving per day in this case
+
+// user will supply this value    
+    var bathroomEvery = 120; // 2 hours expressed as minutes
+
+// user will supply this value
+    var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
+    var bathBreakCount = (Math.floor((759 / bathroomEvery)));
+
+    var maxTimeDrivingAfterBathroom = 759 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
+
+    // maxTimeDrivingAfterBathroom = 669
+
+    if (maxOneDayDrive > maxTimeDrivingAfterBathroom){ // if the user is willing to drive more time than they will have in a day to drive
+        maxOneDayDrive = maxTimeDrivingAfterBathroom; // limit their expectations to what is possible
+    };
+
+    while (distanceToGo > 0) {
+        if (distanceToGo > maxOneDayDrive || distanceToGo > maxTimeDrivingAfterBathroom) { // if its going to take more than a day to do this
+            totalTravelTime += 1440 // then just add 24 hours to the estimate and... 
+            distanceTraveled = Math.min(maxTimeDrivingAfterBathroom, maxOneDayDrive); // assume the user went as far as they could go
+            distanceToGo -= distanceTraveled; // reduce the remaining trip distance
+            refuelCount += 3; // 3 tanks of gas needed for one day of driving
+            bathBreakCount = bathBreakCount * 2 ; // not idea but assumes 
+            hotelStays++; // add a hotel stay
+            hotelTime+= 480; // add 8 hours in the hotel
+        } else if (distanceToGo < maxOneDayDrive) { // if they can go as far as they need to in their time allowance
+            var bathroomTime = (distanceToGo / bathroomEvery) * bathroomBreak; // add their bathroom breaks
+            var refuelCountToday = Math.ceil((distanceToGo/300));
+            var refuelTime = refuelCountToday * 7; // 7 mins refueling every 300 miles
+            if (distanceToGo > breakfastToLunch) { // if thy have to drive thru lunch
+                totalTravelTime +=lunch; // add the lunch stop to total time
+            } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) { // if they are driving thru dinner time
+                totalTravelTime += lunch + dinner; // add the dinner stop to the time
+            };
+            totalTravelTime += distanceToGo; // take the distaqnce form today and add to the total
+            distanceToGo = 0; // reduce the distance down
+            refuelCount += refuelCountToday; // add the fuel stops for today
+            totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
+            var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
+            console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
+            return data[0];
+        };
+    };
+};
+    
+
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
  * ========================================================================= */
+// event listener for when user clicks button to save the lists 
+var packingButton = document.querySelector('.packing-button');
+var buyingButton = document.querySelector('.buying-button');
+var todoButton = document.querySelector('.todo-button');
+var packingInput = document.querySelector('.packing-input');
+var buyingInput = document.querySelector('.buying-input');
+var todoInput = document.querySelector('.todo-input');
+
+
+packingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    var packingInputValue = document.getElementById('packing').value;
+    console.log(packingInputValue)
+
+    var newList = document.createElement('li')
+
+    newList.textContent = packingInputValue;
+
+    document.getElementById('packing-list').append(newList);
+})
+
+buyingButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var newList = document.createElement('li')
+
+    newList.textContent = buyingInput.value;
+
+    document.getElementById('buying-list').append(newList);
+
+})
+
+todoButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var newList = document.createElement('li')
+
+    newList.textContent = todoInput.value;
+
+    document.getElementById('todo-list').append(newList);
+
+})
+
+
+
 
 /* ==========================================================================
  * LOGIC EXECUTION ON PAGE LOAD
  * ========================================================================= */
 
 // fetchingUserLocation ();
-enCity ();
+
 
 element.addEventListener("click", function() {
     document.getElementById("demo").innerHTML = "Hello World";
   });
+
+// enCity ();
+

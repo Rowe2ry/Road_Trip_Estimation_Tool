@@ -10,30 +10,32 @@
     <title>Road Trip App</title>
 </head>
 <body>
-    
-<nav>    
-    <header>
-        <h1>Trip Planner</h1>
-    
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">LET'S GO!</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#Starting Point">Starting Point</a>
-        <a href="#Destination">Destination</a>
-        <a href="#FAQ">FAQ</a>
-      </div>
-    </div>
-    <button class="button"></button>
-    </header>
-    </nav>    
 
+  <div class="headerStyle">
+    <div class="container">
+      <header class="row">
+        <h1>Trip Planner</h1>
+        <nav>
+          <div class="dropdown">
+            <button class="dropbtn">LET'S GO!</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#Starting Point">Starting Point</a>
+              <a href="Destination">Destination</a>
+              <a href="#FAQ">FAQ</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+  </div>
+  
   <container id="enterdata"
-    <row id=""
+    <row id="">
       <form class=start>
         <label for="Starting Point">Starting Point</label>
       <input type="text" id="fname" name="sPoint">
-      <!-- add onclick task when compleleted -->
-      <button type="button" onclick=()>Let's Drive</button>
+     <!-- add onclick task when compleleted --> 
+        <button type="button" onclick=()>Let's Drive</button>
     </form>
 
     <form class=arrival>
@@ -44,7 +46,76 @@
     </form>
   </container>
 
-    <input class="input"> 
-    <script src="./js/script.js"></script>
+  <main class="container">
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="row">
+            <div class="twelve columns">
+              <label for="exampleEmailInput">Where are you going?</label>
+              <input class="u-full-width" type="text" placeholder="i.e. Denver" id="cityName">
+            </div>
+          </div>
+          <input class="button-primary" type="submit" value="Plan trip">
+        </form>
+      </div>
+    </div>
+        <!-- adding container to hold all the planning lists for user -->
+        <div class="planning-list">
+        
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Packing List</p>
+                <form>
+                    <input class="packing-input" id="packing" placeholder="What to pack..." type="text">
+                    <input class="packing-button" type="submit" value="Save"></input>
+                    <ul id="packing-list">
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Buying List</p>
+                <form>
+                    <input class="buying-input" placeholder="What to buy..." type="text">
+                    <input class="buying-button" type="submit" value="Save"></input>
+                    <ul id="buying-list">
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>To Do List</p>
+                <form>
+                    <input class="todo-input" placeholder="What to do..." type="text">
+                    <input class="todo-button" type="submit" value="Save"></input>
+                    <ul id="todo-list">
+                    </ul>
+                </form>
+            </div>  
+        </div>
+
+    </div>    
+  </main>
+
+  <div class="footerStyle">
+    <footer class="container">
+      <div class="row">
+        <div class="ten columns">
+          <p class="white-text">Created with ❤️ by Candice Bailey, Lina Choi, Chris Rowe, and Seamona Stewart</p>
+        </div>
+        <div class="two columns">
+          <p>2022©</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./js/script.js"></script>
+
 </body>
 </html>
