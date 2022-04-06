@@ -18,11 +18,14 @@ var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
  * FUNCTION DEFINITIONS
  * ========================================================================= */
 
+// TESTING! :) 
+function enCity () {
+    var endingLocation = window.prompt('Please Enter the city you want to travel to');
+    fetchingUserLocation (endingLocation);
+}
+
 // function to grab lat & long coordinates from user's current location
 function fetchingUserLocation (str) {
-
-    // var userInputDestination = str;
-    console.log(str) 
 
     // grabs the raw data we need from API
     fetch(ipAddressURL)
@@ -43,7 +46,10 @@ function fetchingUserLocation (str) {
             var userLocationData = [str, startLat, startLon]
             console.log(userLocationData);
 
+            useWeathertoGetcoords(userLocationData[0],userLocationData[1],userLocationData[2]);
         })
+
+        
 };
 
 // grab lat lon coordinate data from OpenWeather by city name
@@ -109,6 +115,5 @@ function grabRoute(startLat, startLon, endLat, endLon) {
  * LOGIC EXECUTION ON PAGE LOAD
  * ========================================================================= */
 
-fetchingUserLocation ();
-grabRoute(startingLatLon[0],startingLatLon[1],endingLatLon[0],endingLatLon[1]);
-
+// fetchingUserLocation ();
+enCity ();
