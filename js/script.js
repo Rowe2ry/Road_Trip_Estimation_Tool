@@ -100,12 +100,69 @@ function grabRoute(startLat, startLon, endLat, endLon) {
                   console.log(data); // in this case just log to console
                   driveDistance = data.features[0].properties.distance;
                   console.log(driveDistance);
+                  console.log('total drive time in minutes =' + travelTimeCalculation (driveDistance))
               });
           } else {
               console.log('error with current fetch'); // just some feedback if the API doesn't recognize the city name
           };
       });
   };
+
+ function travelTimeCalculation (totalDistance) {
+
+    // calculation assumes 60mph to make each mile a minute of time and its a reasonable road trip speed
+    // calculation assumes the user has breakfast at 7:00am and begins their road trip at 8:00am with a full tank of gas
+    // calculation assumes the user will take 30 min lunch at noon
+    // calculation assumes the user will take a 1 hour dinner at 7pm
+    // calculation assumes this day schedule is repeated every day
+    // calculation assumes user has a range limit of 300 miles due to fuel consumption
+    // calculation assumes if the user hits their mad time of driving per day, they will find
+    //                      a hotel, sleep, and start the next day on the usual schedule
+
+    var distanceToGo = Math.ceil(totalDistance); // baseline it takes as many miles as it does minutes round up to nearest min
+    var totalTravelTime = 0;
+    var distanceTraveled = 0;
+    var timeForDriving = 759; // number of minutes someone has to drive after sleeping eating and refueling
+    var breakfastToLunch = 240; // time between breakfast and lunch
+    var lunch = 30; // time for a quick lunch on road trip
+    var lunchToDinner = 390; // mins between lunch and dinner
+
+// user will supply this value, we will cap it later
+    var maxOneDayDrive = 600; // 10 hours of driving per day in this case
+
+// user will supply this value    
+    var bathroomEvery = 120; // 2 hours expressed as minutes
+
+// user will supply this value
+    var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
+
+    var maxTimeDrivingAfterBathroom = 759 - (Math.floor((759 / bathroomEvery)) * bathroomBreak); // take the bathroom breaks out of the day's productivity
+
+    // maxTimeDrivingAfterBathroom = 669
+
+    if (maxOneDayDrive > maxTimeDrivingAfterBathroom){ // if the user is willing to drive more time than they will have in a day to drive
+        maxOneDayDrive = maxTimeDrivingAfterBathroom; // limit their expectations to what is possible
+    };
+
+    while (distanceToGo > 0) {
+        if (distanceToGo > maxOneDayDrive || distanceToGo > maxTimeDrivingAfterBathroom) { // if its going to take more than a day to do this
+            totalTravelTime += 1440 // then just add 24 hours to the estimate and... 
+            distanceTraveled = Math.min(maxTimeDrivingAfterBathroom, maxOneDayDrive); // assume the user went as far as they could go
+            distanceToGo -= distanceTraveled; // reduce the remaining trip distance
+        } else if (distanceToGo < maxOneDayDrive) { // if they can go as far as they need to in their time allowance
+            var bathroomTime = (distanceToGo / bathroomEvery) * bathroomBreak; // add their bathroom breaks
+            var refuelTime = (distanceToGo / 300) * 7; // 7 mins refueling every 300 miles
+            if (distanceToGo > breakfastToLunch) {
+                totalTravelTime +=lunch;
+            } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) {
+                totalTravelTime += lunch + lunchToDinner;
+            }
+            totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
+            return totalTravelTime;
+        };
+    };
+};
+    
 
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
