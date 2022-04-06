@@ -4,6 +4,8 @@
 
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
+
+
  * ========================================================================= */
 
 var APIkeyCurrent = '00d31542c0f530cb4f115dab6831ce15'; // to call the current Weather API from Open Weather
@@ -19,10 +21,10 @@ var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
  * ========================================================================= */
 
 // TESTING! :) 
-function enCity () {
-    var endingLocation = window.prompt('Please Enter the city you want to travel to');
-    fetchingUserLocation (endingLocation);
-}
+// function enCity () {
+//     var endingLocation = window.prompt('Please Enter the city you want to travel to');
+//     fetchingUserLocation (endingLocation);
+// }
 
 // function to grab lat & long coordinates from user's current location
 function fetchingUserLocation (str) {
@@ -110,6 +112,13 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
  * ========================================================================= */
+// event listener for when user clicks button to save the lists 
+var packingButton = $('.packing-button');
+var buyingButton = document.querySelector('.buying-button');
+var todoButton = document.querySelector('.todo-button');
+
+
+
 
 /* ==========================================================================
  * LOGIC EXECUTION ON PAGE LOAD

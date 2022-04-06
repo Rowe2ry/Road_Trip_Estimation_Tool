@@ -6,9 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/skeleton.css">
+    <link rel="stylesheet" href="./css/styleL.css">
+    <!-- linking bootstrap -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
     <title>Road Trip App</title>
 </head>
 <body>
+
+    <!-- for the hero banner? -->
+    <!-- <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Fluid jumbotron</h1>
+          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+      </div> -->
+
+
+    <!-- adding container to hold all the planning lists for user -->
+    <div class="planning-list">
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Packing List</p>
+                <form>
+                    <input class="planning-input" placeholder="What to pack..." type="text">
+                    <input class="packing-button" type="submit" value="Save"></input>
+                    <ul class="hide">
+                        <li></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>Buying List</p>
+                <form>
+                    <input class="planning-input" placeholder="What to buy..." type="text">
+                    <input class="buying-button" type="submit" value="Save"></input>
+                    <ul class="hide">
+                        <li></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section row">
+            <div class="planning-input">
+                <p>To Do List</p>
+                <form>
+                    <input class="planning-input" placeholder="What to do..." type="text">
+                    <input class="todo-button" type="submit" value="Save"></input>
+                    <ul class="hide">
+                        <li></li>
+                    </ul>
+                </form>
+            </div>  
+        </div>
+    </div>    
+
+
+
     <script src="./js/script.js"></script>
 </body>
 </html>
