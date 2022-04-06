@@ -119,7 +119,6 @@ var todoButton = document.querySelector('.todo-button');
 var packingInput = document.querySelector('.packing-input');
 var buyingInput = document.querySelector('.buying-input');
 var todoInput = document.querySelector('.todo-input');
-var newList = document.createElement('li')
 
 
 packingButton.addEventListener('click', function(event) {
@@ -127,6 +126,9 @@ packingButton.addEventListener('click', function(event) {
     
     var packingInputValue = document.getElementById('packing').value;
     console.log(packingInputValue)
+
+    var newList = document.createElement('li')
+
     newList.textContent = packingInputValue;
 
     document.getElementById('packing-list').append(newList);
@@ -134,6 +136,8 @@ packingButton.addEventListener('click', function(event) {
 
 buyingButton.addEventListener('click', function(event) {
     event.preventDefault();
+
+    var newList = document.createElement('li')
 
     newList.textContent = buyingInput.value;
 
@@ -143,6 +147,8 @@ buyingButton.addEventListener('click', function(event) {
 
 todoButton.addEventListener('click', function(event) {
     event.preventDefault();
+
+    var newList = document.createElement('li')
 
     newList.textContent = todoInput.value;
 
