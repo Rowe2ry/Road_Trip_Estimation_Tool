@@ -124,13 +124,12 @@ var newList = document.createElement('li')
 
 packingButton.addEventListener('click', function(event) {
     event.preventDefault();
-
-    newList.textContent = packingInput.value;
+    
+    var packingInputValue = document.getElementById('packing').value;
+    console.log(packingInputValue)
+    newList.textContent = packingInputValue;
 
     document.getElementById('packing-list').append(newList);
-
-    localStorage.setItem("list", packingInput);
-
 })
 
 buyingButton.addEventListener('click', function(event) {
