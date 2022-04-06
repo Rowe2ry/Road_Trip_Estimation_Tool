@@ -7,46 +7,56 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/skeleton.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Road Trip App</title>
+    <title>Getaway</title>
 </head>
 <body>
 
   <div class="headerStyle">
     <div class="container">
       <header class="row">
-        <h1>Trip Planner</h1>
-        <nav>
-          <div class="dropdown">
-            <button class="dropbtn">LET'S GO!</button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#Starting Point">Starting Point</a>
-              <a href="Destination">Destination</a>
-              <a href="#FAQ">FAQ</a>
+        <div class="col u-full-width">
+          <h1 class="white-text">GETAWAY</h1>
+          <h2 class="tagline white-text">Escape with us.</h2>
+          <!-- <nav>
+            <div class="dropdown">
+              <button class="dropbtn">LET'S GO!</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#Starting Point">Starting Point</a>
+                <a href="Destination">Destination</a>
+                <a href="#FAQ">FAQ</a>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav> -->
+        </div>
       </header>
     </div>
   </div>
-  
-  <container id="enterdata"
-    <row id="">
-      <form class=start>
-        <label for="Starting Point">Starting Point</label>
-      <input type="text" id="fname" name="sPoint">
-     <!-- add onclick task when compleleted --> 
-        <button type="button" onclick=()>Let's Drive</button>
-    </form>
-
-    <form class=arrival>
-      <label for="Destination">Destination</label>
-      <input type="text" id="fname" name="sPoint">
-      <!-- add onclick task when compleleted -->
-      <button type="button" onclick=()>Drive Safely!</button>
-    </form>
-  </container>
+  <div class="container">
+    <div class="row">
+      <div class="col u-full-width">
+        <img src="./img/GETAWAY.png" alt="Road Map">
+      </div>
+    </div>
+  </div>
 
   <main class="container">
+    <div class="row">
+      <div class="col">
+        <form class=start>
+          <label for="Starting_Point">Starting Point</label>
+        <input type="text" id="Starting_Point" name="sPoint">
+       <!-- add onclick task when compleleted --> 
+          <button type="button">Let's Drive</button>
+      </form>
+  
+      <form class=arrival>
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" name="sPoint">
+        <!-- add onclick task when compleleted -->
+        <button type="button">Drive Safely!</button>
+      </form>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <form>
@@ -116,7 +126,7 @@
           <p class="white-text">Created with ❤️ by Candice Bailey, Lina Choi, Chris Rowe, and Seamona Stewart</p>
         </div>
         <div class="two columns">
-          <p>2022©</p>
+          <p class="white-text">2022©</p>
         </div>
       </div>
     </footer>
