@@ -6,24 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/skeleton.css">
-    <link rel="stylesheet" href="./css/styleL.css">
-    <!-- linking bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <title>Road Trip App</title>
 </head>
 <body>
+    
+  <div class="headerStyle">
+    <div class="container">
+      <header class="row">
+        <h1>Trip Planner</h1>
+        <nav>
+          <div class="dropdown">
+            <button class="dropbtn">LET'S GO!</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#Starting Point">Starting Point</a>
+              <a href="Destination">Destination</a>
+              <a href="#FAQ">FAQ</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+  </div>
+  
+  
 
-    <!-- for the hero banner? -->
-    <!-- <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4">Fluid jumbotron</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </div>
-      </div> -->
-
-
-    <!-- adding container to hold all the planning lists for user -->
-    <div class="planning-list">
+  <main class="container">
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="row">
+            <div class="twelve columns">
+              <label for="exampleEmailInput">Where are you going?</label>
+              <input class="u-full-width" type="text" placeholder="i.e. Denver" id="cityName">
+            </div>
+          </div>
+          <input class="button-primary" type="submit" value="Plan trip">
+        </form>
+      </div>
+    </div>
+        <!-- adding container to hold all the planning lists for user -->
+        <div class="planning-list">
         
         <div class="list-section row">
             <div class="planning-input">
@@ -62,9 +85,21 @@
         </div>
 
     </div>    
+  </main>
 
+  <div class="footerStyle">
+    <footer class="container">
+      <div class="row">
+        <div class="ten columns">
+          <p class="white-text">Created with ❤️ by Candice Bailey, Lina Choi, Chris Rowe, and Seamona Stewart</p>
+        </div>
+        <div class="two columns">
+          <p>2022©</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-
-    <script src="./js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>
