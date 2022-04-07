@@ -79,12 +79,13 @@ input label button {
 /* css for lists */
   .list {
     text-align: center;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .planning-list {
     display: flex; 
     align-items: center;
-    justify-content: space-around;
     padding-bottom: 5%;
 }
 

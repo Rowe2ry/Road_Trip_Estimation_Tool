@@ -251,13 +251,14 @@ function populatePage( arr) {
 var packingButton = document.querySelector('.packing-button');
 var buyingButton = document.querySelector('.buying-button');
 var todoButton = document.querySelector('.todo-button');
-var packingInput = document.querySelector('.packing-input');
-var buyingInput = document.querySelector('.buying-input');
-var todoInput = document.querySelector('.todo-input');
-var packingList = document.querySelector('#packing-list');
+var packingInput = document.querySelector('#packing-input');
+var buyingInput = document.querySelector('#buying-input');
+var todoInput = document.querySelector('#todo-input');
+var packingList = document.querySelector('#packing-input');
 var buyingList = document.querySelector('#buying-list');
 var todoList = document.querySelector('#todo-list')
 
+// localStorage git items
 var packing = localStorage.getItem('packing');
 console.log(packing)
 var buying = localStorage.getItem('buying');
@@ -265,40 +266,36 @@ console.log(buying)
 var todo = localStorage.getItem('todo');
 console.log(todo)
 
-packingList.textContent = packing;
-buyingList.textContent = buying;
-todoList.textContent = todo;
+if (packing != null) {
+    packingInput.value = packing;
+}
+if (buying != null) {
+    buyingInput.value = buying;
+}
+if (todo != null) {
+    todoInput.value = todo;
+}
 
 // functions for displaying the list onto the page
 packingButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = packingInput.value;
-    document.getElementById('packing-list').append(newList);
-
     localStorage.setItem('packing',packingInput.value);
+    console.log(packingInput.value);
 })
 
 buyingButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = buyingInput.value;
-    document.getElementById('buying-list').append(newList);
-
     localStorage.setItem('buying',buyingInput.value);
+    console.log(buyingInput.value);
+
 })
 
 todoButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = todoInput.value;
-    document.getElementById('todo-list').append(newList);
-
     localStorage.setItem('todo',todoInput.value);
+    console.log(todoInput.value);
+
 })
-
-
-
 
 /* ==========================================================================
  * LOGIC EXECUTION ON PAGE LOAD
