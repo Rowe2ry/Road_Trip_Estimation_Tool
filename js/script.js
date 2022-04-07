@@ -316,7 +316,8 @@ var driveButton = document.querySelector('.driveButton')
 driveButton.addEventListener("click", function(event) {
     event.preventDefault();
     var SP = Starting_Point.value;
-    console.log (SP)
+    console.log (SP);
+    fetchingUserLocation (SP);
 })
 
 var Destination = document.querySelector(".destination")
