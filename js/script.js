@@ -147,7 +147,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
     var distanceToGo = Math.ceil(totalDistance); // baseline it takes as many miles as it does minutes round up to nearest min
     var totalTravelTime = 0;
     var distanceTraveled = 0;
-    var timeForDriving = 759; // number of minutes someone has to drive after sleeping eating and refueling
+    var timeForDriving = 849; // number of minutes someone has to drive after sleeping eating and refueling
     var breakfastToLunch = 240; // time between breakfast and lunch
     var lunch = 30; // time for a quick lunch on road trip
     var lunchToDinner = 390; // mins between lunch and dinner
@@ -164,9 +164,9 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 
 // user will supply this value
     var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
-    var bathBreakCount = (Math.floor((759 / bathroomEvery)));
+    var bathBreakCount = (Math.floor((849 / bathroomEvery)));
 
-    var maxTimeDrivingAfterBathroom = 759 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
+    var maxTimeDrivingAfterBathroom = 849 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
 
     // maxTimeDrivingAfterBathroom = 669
 
