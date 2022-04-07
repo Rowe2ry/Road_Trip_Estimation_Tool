@@ -76,3 +76,22 @@ input label button {
     color: #fff;
   }
 
+/* css for lists */
+  .list {
+    text-align: center;
+}
+
+.planning-list {
+    display: flex; 
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 5%;
+}
+
+.list-section {
+    align-items: center;
+    padding: 5%;
+    border: 1px solid black;
+}
+
+

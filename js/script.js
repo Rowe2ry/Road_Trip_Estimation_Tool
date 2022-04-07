@@ -254,41 +254,47 @@ var todoButton = document.querySelector('.todo-button');
 var packingInput = document.querySelector('.packing-input');
 var buyingInput = document.querySelector('.buying-input');
 var todoInput = document.querySelector('.todo-input');
+var packingList = document.querySelector('#packing-list');
+var buyingList = document.querySelector('#buying-list');
+var todoList = document.querySelector('#todo-list')
 
+var packing = localStorage.getItem('packing');
+console.log(packing)
+var buying = localStorage.getItem('buying');
+console.log(buying)
+var todo = localStorage.getItem('todo');
+console.log(todo)
 
+packingList.textContent = packing;
+buyingList.textContent = buying;
+todoList.textContent = todo;
+
+// functions for displaying the list onto the page
 packingButton.addEventListener('click', function(event) {
     event.preventDefault();
-    
-    var packingInputValue = document.getElementById('packing').value;
-    console.log(packingInputValue)
-
     var newList = document.createElement('li')
-
-    newList.textContent = packingInputValue;
-
+    newList.textContent = packingInput.value;
     document.getElementById('packing-list').append(newList);
+
+    localStorage.setItem('packing',packingInput.value);
 })
 
 buyingButton.addEventListener('click', function(event) {
     event.preventDefault();
-
     var newList = document.createElement('li')
-
     newList.textContent = buyingInput.value;
-
     document.getElementById('buying-list').append(newList);
 
+    localStorage.setItem('buying',buyingInput.value);
 })
 
 todoButton.addEventListener('click', function(event) {
     event.preventDefault();
-
     var newList = document.createElement('li')
-
     newList.textContent = todoInput.value;
-
     document.getElementById('todo-list').append(newList);
 
+    localStorage.setItem('todo',todoInput.value);
 })
 
 
@@ -301,9 +307,9 @@ todoButton.addEventListener('click', function(event) {
 // fetchingUserLocation ();
 
 
-element.addEventListener("click", function() {
-    document.getElementById("demo").innerHTML = "Hello World";
-  });
+// element.addEventListener("click", function() {
+//     document.getElementById("demo").innerHTML = "Hello World";
+//   });
 
 // enCity ();
 
