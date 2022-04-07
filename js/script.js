@@ -301,9 +301,26 @@ todoButton.addEventListener('click', function(event) {
 // fetchingUserLocation ();
 
 
-element.addEventListener("click", function() {
-    document.getElementById("demo").innerHTML = "Hello World";
-  });
+var Starting_Point = document.querySelector(".Starting_Point")
+var driveButton = document.querySelector('.driveButton')
 
-// enCity ();
+driveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    var SP = Starting_Point.value;
+    console.log (SP)
+})
 
+var Destination = document.querySelector(".destination")
+var safeButton = document.querySelector('.safeButton')
+
+safeButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    var Des = Destination.value;
+    console.log (Des)
+})
+
+
+
+//     event.console.log(starting_point);
+    // document.getElement("demo") = console.log(starting_point);
+    
