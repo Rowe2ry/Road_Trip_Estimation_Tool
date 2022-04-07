@@ -13,7 +13,7 @@ This is the website for you!
 (picture of finished product will go here)
 
 ## Wireframe | Figma 
-![RoadTripApp | Wireframe | Figma](https://user-images.githubusercontent.com/100983245/162236845-738d56d5-6069-40f7-ab6d-5c88e1d1f1f0.png)
+[RoadTripApp | Wireframe | Figma](./img/RoadTripApp%20%7C%20Wireframe%20%7C%20Figma.png)
 
 ## APIs Used
 [IPinfo](https://ipinfo.io/developers) - Used to pull user starting location
