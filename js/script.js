@@ -309,13 +309,13 @@ todoButton.addEventListener('click', function(event) {
 
 
 
-var Starting_Point = document.querySelector(".Starting_Point")
+var Starting_Point = document.querySelector(".ending_Point")
 var driveButton = document.querySelector('.driveButton')
 
 
 driveButton.addEventListener("click", function(event) {
     event.preventDefault();
-    var SP = Starting_Point.value;
+    var SP = Ending_Point.value;
     console.log (SP);
     fetchingUserLocation (SP);
 })
