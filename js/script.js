@@ -257,9 +257,6 @@ var todoButton = document.querySelector('.todo-button');
 var packingInput = document.querySelector('#packing-input');
 var buyingInput = document.querySelector('#buying-input');
 var todoInput = document.querySelector('#todo-input');
-var packingList = document.querySelector('#packing-input');
-var buyingList = document.querySelector('#buying-list');
-var todoList = document.querySelector('#todo-list')
 
 // localStorage git items
 var packing = localStorage.getItem('packing');
