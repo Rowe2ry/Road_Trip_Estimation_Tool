@@ -44,70 +44,49 @@
         <input type="text" class="destination" name="sPoint" class="u-full-width">
         <!-- add onclick task when compleleted -->
         <button type="safeButton" class="safeButton">Drive Safely!</button>
+
       </form>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <form>
-          <div class="row">
-            <div class="twelve columns">
-              <label for="exampleEmailInput">Where are you going?</label>
-              <input class="u-full-width" type="text" placeholder="i.e. Denver" id="cityName">
-            </div>
-          </div>
-          <button type="submit" value="Plan trip">Plan trip</button>
-        </form>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col u-full-width" id="outputArea">
         
       </div>
     </div>
 
-        <!-- adding container to hold all the planning lists for user -->
-        <div class="planning-list">
-        
-        <div class="list-section row">
-            <div class="planning-input">
-                <p class="list">Packing List</p>
-                <form>
-                    <input class="packing-input" id="packing" placeholder="What to pack..." type="text">
-                    <input class="packing-button button-primary" type="submit" value="Save"></input>
-                    <ul id="packing-list">
-                    </ul>
-                </form>
-            </div>
-        </div>
+    <!-- adding container to hold all the planning lists for user -->
+    <div class="planning-list row">
 
-        <div class="list-section row">
-            <div class="planning-input">
-                <p class="list">Buying List</p>
-                <form>
-                    <input class="buying-input" placeholder="What to buy..." type="text">
-                    <input class="buying-button button-primary" type="submit" value="Save"></input>
-                    <ul id="buying-list">
-                    </ul>
-                </form>
-            </div>
-        </div>
+      <div class="list-section col four columns">
+        <p class="list">Packing List</p>
+        <form>
+            <label for="packing-input"></label>
+            <textarea class="u-full-width" placeholder="What to pack..." id="packing-input"></textarea>
+            <button class="packing-button btn" type="submit" value="Save">Save</button>
+        </form>
+      </div>
 
-        <div class="list-section row">
-            <div class="planning-input">
-                <p class="list">To Do List</p>
-                <form>
-                    <input class="todo-input" placeholder="What to do..." type="text">
-                    <input class="todo-button button-primary" type="submit" value="Save"></input>
-                    <ul id="todo-list">
-                    </ul>
-                </form>
-            </div>  
-        </div>
+      <div class="list-section col four columns">
+        <p class="list">Buying List</p>
+        <form>
+            <label for="buying-input"></label>
+            <textarea class="u-full-width" placeholder="What to buy..." id="buying-input"></textarea>
+            <button class="buying-button btn" type="submit" value="Save">Save</button>
+        </form>
+      </div>
 
-    </div>    
-  </main>
+      <div class="list-section col four columns">
+        <p class="list">To Do List</p>
+        <form>
+            <label for="todo-input"></label>
+            <textarea class="u-full-width" placeholder="What to do..." id="todo-input"></textarea>
+            <button class="todo-button btn" type="submit" value="Save">Save</button>
+        </form>
+      </div>
+
+    </div>  
+
+</main>
 
   <div class="footerStyle">
     <footer class="container">

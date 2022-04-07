@@ -3,32 +3,29 @@ Looking to go on a road trip?
 Need to find out how long it takes to get from you to your destination? 
 This is the website for you!
 
-## APIs
-[IPinfo] (https://ipinfo.io/developers)
-  * Used to pull user starting location
-[oneWeather] (https://openweathermap.org/current)
-  * Used to pull coordinates of user's destination
-[Geoapify] (https://www.geoapify.com/)
-  * Used to determine time from starting location to destination
+## Installation
+[Deployed Github Page]()
 
-## CSS Library 
-[Skeleton] (http://getskeleton.com/)
-
-## Wireframe | Figma 
-(picture of our figma will go here)
+## Link to Github Repository 
+[Github Repository](https://github.com/Jaspertena/RoadTripApp)
 
 ## Visuals to Deployed Page
 (picture of finished product will go here)
 
-## Link to Deployed Page
-[Deployed Github Page] ()
+## Wireframe | Figma 
+[RoadTripApp | Wireframe | Figma](./img/RoadTripApp%20%7C%20Wireframe%20%7C%20Figma.png)
 
-## Link to Github Repository 
-[Github Repository] (https://github.com/Jaspertena/RoadTripApp)
+## APIs Used
+[IPinfo](https://ipinfo.io/developers) - Used to pull user starting location
+[oneWeather](https://openweathermap.org/current) - Used to pull coordinates of user's destination
+[Geoapify](https://www.geoapify.com/) - Used to determine time from starting location to destination
+
+## CSS Library 
+[Skeleton](http://getskeleton.com/) 
 
 ## Contributing 
-* Candice Bailey
-* Lina Choi
-* Chris Rowe
-* Seamona Stewart
+* Candice Bailey (https://github.com/CBailey92)
+* Lina Choi (https://github.com/choilina16)
+* Chris Rowe (https://github.com/Rowe2ry)
+* Seamona Stewart (https://github.com/Jaspertena)
 

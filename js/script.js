@@ -164,7 +164,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 
 // user will supply this value
     var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
-    var bathBreakCount = (Math.floor((849 / bathroomEvery)));
+    var bathBreakCount = 0;
 
     var maxTimeDrivingAfterBathroom = 849 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
 
@@ -180,13 +180,15 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             distanceTraveled = Math.min(maxTimeDrivingAfterBathroom, maxOneDayDrive); // assume the user went as far as they could go
             distanceToGo -= distanceTraveled; // reduce the remaining trip distance
             refuelCount += 3; // 3 tanks of gas needed for one day of driving
-            bathBreakCount = bathBreakCount * 2 ; // not idea but assumes 
+            bathBreakCount += (Math.floor((distanceToGo / bathroomEvery))) ; // not idea but assumes 
+            bathroomTime = bathBreakCount * bathroomBreak;
             hotelStays++; // add a hotel stay
             hotelTime+= 480; // add 8 hours in the hotel
         } else if (distanceToGo < maxOneDayDrive) { // if they can go as far as they need to in their time allowance
             var bathroomTime = (distanceToGo / bathroomEvery) * bathroomBreak; // add their bathroom breaks
-            var refuelCountToday = Math.ceil((distanceToGo/300));
-            var refuelTime = refuelCountToday * 7; // 7 mins refueling every 300 miles
+            var refuelCountToday = Math.floor((distanceToGo/300));
+            bathBreakCount += (Math.floor((distanceToGo / bathroomEvery)));
+            bathroomTime = bathBreakCount * bathroomBreak;
             if (distanceToGo > breakfastToLunch) { // if thy have to drive thru lunch
                 totalTravelTime +=lunch; // add the lunch stop to total time
             } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) { // if they are driving thru dinner time
@@ -195,6 +197,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             totalTravelTime += distanceToGo; // take the distaqnce form today and add to the total
             distanceToGo = 0; // reduce the distance down
             refuelCount += refuelCountToday; // add the fuel stops for today
+            refuelTime = refuelCount * 7;
             totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
             var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
             console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
@@ -251,13 +254,11 @@ function populatePage( arr) {
 var packingButton = document.querySelector('.packing-button');
 var buyingButton = document.querySelector('.buying-button');
 var todoButton = document.querySelector('.todo-button');
-var packingInput = document.querySelector('.packing-input');
-var buyingInput = document.querySelector('.buying-input');
-var todoInput = document.querySelector('.todo-input');
-var packingList = document.querySelector('#packing-list');
-var buyingList = document.querySelector('#buying-list');
-var todoList = document.querySelector('#todo-list')
+var packingInput = document.querySelector('#packing-input');
+var buyingInput = document.querySelector('#buying-input');
+var todoInput = document.querySelector('#todo-input');
 
+// localStorage git items
 var packing = localStorage.getItem('packing');
 console.log(packing)
 var buying = localStorage.getItem('buying');
@@ -265,40 +266,36 @@ console.log(buying)
 var todo = localStorage.getItem('todo');
 console.log(todo)
 
-packingList.textContent = packing;
-buyingList.textContent = buying;
-todoList.textContent = todo;
+if (packing != null) {
+    packingInput.value = packing;
+}
+if (buying != null) {
+    buyingInput.value = buying;
+}
+if (todo != null) {
+    todoInput.value = todo;
+}
 
 // functions for displaying the list onto the page
 packingButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = packingInput.value;
-    document.getElementById('packing-list').append(newList);
-
     localStorage.setItem('packing',packingInput.value);
+    console.log(packingInput.value);
 })
 
 buyingButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = buyingInput.value;
-    document.getElementById('buying-list').append(newList);
-
     localStorage.setItem('buying',buyingInput.value);
+    console.log(buyingInput.value);
+
 })
 
 todoButton.addEventListener('click', function(event) {
     event.preventDefault();
-    var newList = document.createElement('li')
-    newList.textContent = todoInput.value;
-    document.getElementById('todo-list').append(newList);
-
     localStorage.setItem('todo',todoInput.value);
+    console.log(todoInput.value);
+
 })
-
-
-
 
 /* ==========================================================================
  * LOGIC EXECUTION ON PAGE LOAD
@@ -309,26 +306,16 @@ todoButton.addEventListener('click', function(event) {
 
 
 
-var Starting_Point = document.querySelector(".Starting_Point")
-var driveButton = document.querySelector('.driveButton')
+var Ending_Point = document.querySelector(".Ending_Point");
+var driveButton = document.querySelector('.driveButton');
 
 
 driveButton.addEventListener("click", function(event) {
     event.preventDefault();
-    var SP = Starting_Point.value;
+    var SP = Ending_Point.value;
     console.log (SP);
     fetchingUserLocation (SP);
-})
-
-var Destination = document.querySelector(".destination")
-var safeButton = document.querySelector('.safeButton')
-
-safeButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    var Des = Destination.value;
-    console.log (Des)
-})
-
+});
 
 
 //     event.console.log(starting_point);
