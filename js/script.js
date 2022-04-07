@@ -306,8 +306,8 @@ todoButton.addEventListener('click', function(event) {
 
 
 
-var Starting_Point = document.querySelector(".ending_Point")
-var driveButton = document.querySelector('.driveButton')
+var Ending_Point = document.querySelector(".Ending_Point");
+var driveButton = document.querySelector('.driveButton');
 
 
 driveButton.addEventListener("click", function(event) {
@@ -315,17 +315,7 @@ driveButton.addEventListener("click", function(event) {
     var SP = Ending_Point.value;
     console.log (SP);
     fetchingUserLocation (SP);
-})
-
-var Destination = document.querySelector(".destination")
-var safeButton = document.querySelector('.safeButton')
-
-safeButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    var Des = Destination.value;
-    console.log (Des)
-})
-
+});
 
 
 //     event.console.log(starting_point);
