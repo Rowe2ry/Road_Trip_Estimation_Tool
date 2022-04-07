@@ -164,7 +164,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
 
 // user will supply this value
     var bathroomBreak = 15; // minutes assumed to find a bathroom stop the car, stretch legs, use bathroom
-    var bathBreakCount = (Math.floor((849 / bathroomEvery)));
+    var bathBreakCount = 0;
 
     var maxTimeDrivingAfterBathroom = 849 - (bathBreakCount * bathroomBreak); // take the bathroom breaks out of the day's productivity
 
@@ -180,13 +180,15 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             distanceTraveled = Math.min(maxTimeDrivingAfterBathroom, maxOneDayDrive); // assume the user went as far as they could go
             distanceToGo -= distanceTraveled; // reduce the remaining trip distance
             refuelCount += 3; // 3 tanks of gas needed for one day of driving
-            bathBreakCount = bathBreakCount * 2 ; // not idea but assumes 
+            bathBreakCount += (Math.floor((distanceToGo / bathroomEvery))) ; // not idea but assumes 
+            bathroomTime = bathBreakCount * bathroomBreak;
             hotelStays++; // add a hotel stay
             hotelTime+= 480; // add 8 hours in the hotel
         } else if (distanceToGo < maxOneDayDrive) { // if they can go as far as they need to in their time allowance
             var bathroomTime = (distanceToGo / bathroomEvery) * bathroomBreak; // add their bathroom breaks
-            var refuelCountToday = Math.ceil((distanceToGo/300));
-            var refuelTime = refuelCountToday * 7; // 7 mins refueling every 300 miles
+            var refuelCountToday = Math.floor((distanceToGo/300));
+            bathBreakCount += (Math.floor((distanceToGo / bathroomEvery)));
+            bathroomTime = bathBreakCount * bathroomBreak;
             if (distanceToGo > breakfastToLunch) { // if thy have to drive thru lunch
                 totalTravelTime +=lunch; // add the lunch stop to total time
             } else if (distanceToGo > breakfastToLunch + lunch + lunchToDinner) { // if they are driving thru dinner time
@@ -195,6 +197,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
             totalTravelTime += distanceToGo; // take the distaqnce form today and add to the total
             distanceToGo = 0; // reduce the distance down
             refuelCount += refuelCountToday; // add the fuel stops for today
+            refuelTime = refuelCount * 7;
             totalTravelTime = totalTravelTime + distanceToGo + bathroomTime + refuelTime; // add up travel bathroom and fuel
             var data = [totalTravelTime, refuelCount, bathBreakCount, hotelStays, hotelTime]; // collect the data
             console.log('Total Travel Time: ' + data[0] + '\n Times you refueled: ' + data[1] + '\n Times you stopped for the bathroom: ' + data[2] + '\n Times you have to stay in a hotel: ' + data[3]);
