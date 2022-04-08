@@ -5,7 +5,7 @@ This is the website for you! Getaway calculates bathroom breaks, meals, and driv
 ![RoadTripApp _ Getaway](https://user-images.githubusercontent.com/100983245/162287318-0397ca5d-2e20-4fcd-a806-84f6723d45f8.png)
 
 ## Installation
-[Diployed Page](https://jaspertena.github.io/RoadTripApp/)
+[Deployed Page](https://jaspertena.github.io/RoadTripApp/)
 
 ## Link to Github Repository
 [Github Repository](https://github.com/Jaspertena/RoadTripApp)
