@@ -104,4 +104,7 @@ input label button {
     border: 1px solid black;
 }
 
-
+.instructions {
+    text-align: center;
+    /* font-size: 20px; */
+}
