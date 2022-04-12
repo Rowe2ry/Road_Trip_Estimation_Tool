@@ -22,73 +22,66 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col u-full-width">
-        <img src="./img/GETAWAY.png" alt="Road Map">
+  <div class="center__page">
+    <div class="container">
+      <div class="row">
+        <div class="u-full-width">
+          <img src="./img/GETAWAY-crop.png" alt="Road Map">
+        </div>
       </div>
     </div>
+    <main class="container">
+      <div class="row">
+          <div class="u-full-width">
+            <h4 class="instructions">Enter a destination and click "Drive Safely" to begin.</h4>
+          </div>
+      </div>
+      <div class="row">
+        <form class="u-full-width">
+          <!-- <p class="instructions">Just enter a destination and click "Drive Safely" to begin.</p> -->
+          <label for="destination">Destination</label>
+          <input type="text" class="Ending_Point u-full-width" name="sPoint">
+          <!-- add onclick task when compleleted -->
+          <button type="safeButton" class="driveButton">Drive Safely!</button>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col u-full-width" id="outputArea">
+    
+        </div>
+      </div>
+      <!-- adding container to hold all the planning lists for user -->
+      <div class="row">
+        <div class="list-section four columns">
+          <form>
+              <label for="packing-input">Packing List</label>
+              <textarea class="u-full-width" placeholder="What to pack..." id="packing-input"></textarea>
+              <button class="packing-button btn" type="submit" value="Save">Save</button>
+          </form>
+        </div>
+        <div class="list-section four columns">
+          <form>
+              <label for="buying-input">Buying List</label>
+              <textarea class="u-full-width" placeholder="What to buy..." id="buying-input"></textarea>
+              <button class="buying-button btn" type="submit" value="Save">Save</button>
+          </form>
+        </div>
+        <div class="list-section four columns">
+          <form>
+              <label for="todo-input">To Do List</label>
+              <textarea class="u-full-width" placeholder="What to do..." id="todo-input"></textarea>
+              <button class="todo-button btn" type="submit" value="Save">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns u-full-width">
+          <label for="faqButton">Learn More Here</label>
+           <!-- add onclick task when compleleed -->
+          <a href="./FAQ.html"><button id="faqButton" class="FAQButton">FAQ</button></a>
+        </div>
+      </div>
   </div>
-
-  <main class="container">
-    <div class="row">
-      <div class="col">
-        <div class="start twelve columns">
-          <label for="LearnButton">Learn More Here</label>
-       <!-- add onclick task when compleleed --> 
-          <a href="./FAQ.html"><button type="FAQButton" class="FAQButton">FAQ</button></a>
-        </div>
-        
-        <div class="col u-full-width">
-          <h4 class="instructions">Enter a destination and click "Drive Safely" to begin.</h4>
-        </div>
-
-
-      <form class="arrival col u-full-width">
-        <!-- <p class="instructions">Just enter a destination and click "Drive Safely" to begin.</p> -->
-        <label for="destination">Destination</label>
-        <input type="text" class="Ending_Point" name="sPoint" class="u-full-width">
-        <!-- add onclick task when compleleted -->
-        <button type="safeButton" class="driveButton">Drive Safely!</button>
-      </form>
-    </div>
-    <div class="row">
-      <div class="col u-full-width" id="outputArea">
-        
-      </div>
-    </div>
-
-    <!-- adding container to hold all the planning lists for user -->
-    <div class="planning-list row">
-
-      <div class="list-section col four columns">
-        <p class="list">Packing List</p>
-        <form>
-            <label for="packing-input"></label>
-            <textarea class="u-full-width" placeholder="What to pack..." id="packing-input"></textarea>
-            <button class="packing-button btn" type="submit" value="Save">Save</button>
-        </form>
-      </div>
-
-      <div class="list-section col four columns">
-        <p class="list">Buying List</p>
-        <form>
-            <label for="buying-input"></label>
-            <textarea class="u-full-width" placeholder="What to buy..." id="buying-input"></textarea>
-            <button class="buying-button btn" type="submit" value="Save">Save</button>
-        </form>
-      </div>
-
-      <div class="list-section col four columns">
-        <p class="list">To Do List</p>
-        <form>
-            <label for="todo-input"></label>
-            <textarea class="u-full-width" placeholder="What to do..." id="todo-input"></textarea>
-            <button class="todo-button btn" type="submit" value="Save">Save</button>
-        </form>
-      </div>
-
-    </div>  
 
 </main>
 
@@ -96,7 +89,7 @@
     <footer class="container">
       <div class="row">
         <div class="ten columns">
-          <p class="white-text">Created with ❤️ by Candice Bailey, Lina Choi, Chris Rowe, and Seamona Stewart</p>
+          <p class="white-text">Created by Chris Rowe</p>
         </div>
         <div class="two columns">
           <p class="white-text">2022©</p>
