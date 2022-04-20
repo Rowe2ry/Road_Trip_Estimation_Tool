@@ -1,90 +1,55 @@
 /* ==========================================================================
- * DOM TARGETTING
+ * DOM TARGETING
  * ========================================================================= */
 
-var outPutArea = document.getElementById('outputArea');
+var outPutArea = document.getElementById('outputArea'); // where the time calculation will go
+var packingButton = document.querySelector('.packing-button'); // targeting for event listeners
+var buyingButton = document.querySelector('.buying-button'); // targeting for event listeners
+var todoButton = document.querySelector('.todo-button'); // targeting for event listeners
+var packingInput = document.querySelector('#packing-input'); // input field to pass in or read value attribute
+var buyingInput = document.querySelector('#buying-input'); // input field to pass in or read value attribute
+var todoInput = document.querySelector('#todo-input'); // input field to pass in or read value attribute
 
 /* ==========================================================================
  * GLOBAL VARIABLE DECLARATIONS
-
-
  * ========================================================================= */
 
 var APIkeyCurrent = '00d31542c0f530cb4f115dab6831ce15'; // to call the current Weather API from Open Weather
-var geoApifyAPIkey = 'ea553f8b84ca463ebd4f9b51790b865e';
-var commaInsertion = '%2C';
-var pipeInsertion = '%7C';
-var ipAddressURL ='https://ipinfo.io/json?token=fc2c5059a0b866';
-var startingLatLon = [33.87820,-84.23729]; // plug in from user's IP address fetch
-var endingLatLon = [28.54064,-81.36489 ]; // plug in from weather API search
+var geoApifyAPIkey = 'ea553f8b84ca463ebd4f9b51790b865e'; // key to call the geoapify API
+var commaInsertion = '%2C'; // just to better reference a comma in a URL
+var pipeInsertion = '%7C'; // just to better reference a pipe character in a URL
+var ipAddressURL ='https://ipinfo.io/json?token=fc2c5059a0b866'; // URL for getting information from an IP address
 
 /* ==========================================================================
  * FUNCTION DEFINITIONS
  * ========================================================================= */
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
 
-
-
-// TESTING! :) 
-// function enCity () {
-//     var endingLocation = window.prompt('Please Enter the city you want to travel to');
-//     fetchingUserLocation (endingLocation);
-// }
-
-// function to grab lat & long coordinates from user's current location
+// function to grab lat & lon coordinates from user's current location
 function fetchingUserLocation (str) {
-
-    // grabs the raw data we need from API
-    fetch(ipAddressURL)
+    fetch(ipAddressURL) // grabs the raw data we need from API
         .then(function (response) {
-            console.log(response)
-            return response.json ();
+            // console.log(response) // <- was used for debugging
+            return response.json (); // formats data to be used
         })
-        // formats data to be used
         .then(function (data) {
-            console.log(data)
-
-            var userStartingLoc = data.loc.split(','); // grabs the lat & lon of user - spliting to use seperately
+            // console.log(data) // <- was used for debugging
+            var userStartingLoc = data.loc.split(','); // grabs the lat & lon of user - splitting to use separately
             var startLat = userStartingLoc[0]; // grabs the lat of user
             var startLon = userStartingLoc[1]; // grabs the lon of user 
             console.log(userStartingLoc, startLat, startLon);
-
-             // putting all into an array to pass to next function
-            var userLocationData = [str, startLat, startLon]
-            console.log(userLocationData);
-
-            useWeathertoGetcoords(userLocationData[0],userLocationData[1],userLocationData[2]);
-        })
-
-        
+            var userLocationData = [str, startLat, startLon]; // putting all into an array to pass to next function
+            // console.log(userLocationData); // <- was used for debugging
+            useWeatherToGetcoords(userLocationData[0],userLocationData[1],userLocationData[2]);
+        });
 };
 
 // grab lat lon coordinate data from OpenWeather by city name
-function useWeathertoGetcoords(str,startLat,startLon) {
+function useWeatherToGetcoords(str,startLat,startLon) {
     // API url, the city is entered by the user
     var currentWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + // base API cll url
     str + // city by name
     '&appid=' + // string query for the key
-    APIkeyCurrent;
-
+    APIkeyCurrent; 
     // grabs the raw data we need
     fetch(currentWeatherURL)
         .then(function (response){
@@ -124,7 +89,7 @@ function grabRoute(startLat, startLon, endLat, endLon) {
               .then(function (data) { // and do stuff
                   console.log(data); // in this case just log to console
                   driveDistance = data.features[0].properties.distance;
-                  console.log(driveDistance);
+                  // console.log(driveDistance); // <- was used for debugging
                   console.log('total drive time in minutes =' + travelTimeCalculation (driveDistance));
               });
           } else {
@@ -134,16 +99,14 @@ function grabRoute(startLat, startLon, endLat, endLon) {
   };
 
  function travelTimeCalculation (totalDistance) {
-
     // calculation assumes 60mph to make each mile a minute of time and its a reasonable road trip speed
     // calculation assumes the user has breakfast at 7:00am and begins their road trip at 8:00am with a full tank of gas
     // calculation assumes the user will take 30 min lunch at noon
     // calculation assumes the user will take a 1 hour dinner at 7pm
     // calculation assumes this day schedule is repeated every day
     // calculation assumes user has a range limit of 300 miles due to fuel consumption
-    // calculation assumes if the user hits their mad time of driving per day, they will find
-    //                      a hotel, sleep, and start the next day on the usual schedule
-
+    // calculation assumes if the user hits their max time of driving per day, they will find
+    // a hotel, sleep, and start the next day on the usual schedule
     var distanceToGo = Math.ceil(totalDistance); // baseline it takes as many miles as it does minutes round up to nearest min
     var totalTravelTime = 0;
     var distanceTraveled = 0;
@@ -245,50 +208,42 @@ function populatePage( arr) {
     driveDataList.append(bathLiEl);
     driveDataList.append(hotelLiEl);
     driveDataList.append(asWell);
-}
+};
 
 /* ==========================================================================
  * ACTIVE EVENT LISTENERS
  * ========================================================================= */
-// event listener for when user clicks button to save the lists 
-var packingButton = document.querySelector('.packing-button');
-var buyingButton = document.querySelector('.buying-button');
-var todoButton = document.querySelector('.todo-button');
-var packingInput = document.querySelector('#packing-input');
-var buyingInput = document.querySelector('#buying-input');
-var todoInput = document.querySelector('#todo-input');
 
 // localStorage git items
 var packing = localStorage.getItem('packing');
-console.log(packing)
+console.log(packing);
 var buying = localStorage.getItem('buying');
-console.log(buying)
+console.log(buying);
 var todo = localStorage.getItem('todo');
-console.log(todo)
+console.log(todo);
 
 if (packing != null) {
     packingInput.value = packing;
-}
+};
 if (buying != null) {
     buyingInput.value = buying;
-}
+};
 if (todo != null) {
     todoInput.value = todo;
-}
+};
 
 // functions for displaying the list onto the page
 packingButton.addEventListener('click', function(event) {
     event.preventDefault();
     localStorage.setItem('packing',packingInput.value);
     console.log(packingInput.value);
-})
+});
 
 buyingButton.addEventListener('click', function(event) {
     event.preventDefault();
     localStorage.setItem('buying',buyingInput.value);
     console.log(buyingInput.value);
-
-})
+});
 
 todoButton.addEventListener('click', function(event) {
     event.preventDefault();
